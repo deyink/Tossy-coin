@@ -1,26 +1,28 @@
 import { View, Text, Image, StyleSheet, Animated, TouchableOpacity, Easing } from 'react-native'
 import React, { useRef, useState } from 'react'
+import { StatusBar } from 'expo-status-bar'
+import { hs, ms, vs } from './Metrics'
 
 const HomePage = () => {
   const [coinSide, setCoinSide]= useState('queen')
   const [queenCount, setQueenCount] = useState(0)
   const [kingCount, setKingCount] = useState(0)
+  const [counts, setCounts] = useState(0)
 
   const flipAnimation = useRef( new Animated.Value(0) ).current
   const animatedValue = useRef( new Animated.Value(0) ).current
 
   const tossCoin = ()=>{
     const randomSide = Math.floor(Math.random() *2)
-  
+    
 
   Animated.timing(flipAnimation, { 
     toValue: 3, 
-    duration: 500, 
+    duration: 1000, 
     easing: Easing.linear , 
     useNativeDriver: true, 
 }).start(() => { 
-            // Reset the animation value and set the 
-            // coin side based on the random result 
+      
             flipAnimation.setValue(0); 
             if (randomSide === 0) { 
                 setCoinSide("king"); 
@@ -29,18 +31,36 @@ const HomePage = () => {
                 setCoinSide("queen"); 
                 setQueenCount(queenCount + 1); 
             } 
-        }); 
+        });
+        
       }
     
 
     const resetCounts = () => { 
       setKingCount(0); 
-      setQueenCount(0); 
+      setQueenCount(0);
+      setCounts(0)
   }; 
+  if( kingCount + queenCount === counts && kingCount > queenCount ){
+    alert('King is the winner')
+    resetCounts();
+  }
+  else if( kingCount + queenCount === counts && queenCount > kingCount ){
+    alert('Queen is the winnwer')
+      resetCounts();
+  }
   
+
   return (
     <View style={styles.home} >
+        <StatusBar style="auto" />
     <View style={styles.homeContainer}  >
+    <View style={{flexDirection:'row', justifyContent:'space-around', marginTop:'8%'}} >
+       <Text onPress={()=>setCounts(1)} style={{paddingHorizontal:10, marginVertical:5, backgroundColor:'green'}} > 1 </Text>
+       <Text onPress={()=>setCounts(3)} style={{paddingHorizontal:10, marginVertical:5, backgroundColor:'green'}} > 3 </Text>
+       <Text onPress={()=>setCounts(5)} style={{paddingHorizontal:10, marginVertical:5, backgroundColor:'green'}} > 5 </Text>
+       <Text onPress={()=>setCounts(7)} style={{paddingHorizontal:10, marginVertical:5, backgroundColor:'green'}} > 7 </Text>
+    </View>
       <View style={styles.coinContainer} >
         {coinSide && ( <Animated.Image
         source={ coinSide === 'queen' ?
@@ -82,6 +102,7 @@ const HomePage = () => {
       </View>
 
       <Image style={styles.money} source={require('../assets/money.png')} />
+    <Text style={styles.tossTime} >Set Toss Time: {counts} </Text>
     </View>
     </View>
   )
@@ -90,63 +111,61 @@ const HomePage = () => {
 export default HomePage
 
 const styles = StyleSheet.create({
-  home:{
-    height:'100%',
-    width:'100%',
-    backgroundColor:'#fffcf3',
-  
-  },
   homeContainer:{
     backgroundColor:'#e5ffe5',
-    height:'100%',
-    width:'100%',
-    padding:'2%'
+    height: vs(812),
+    width:hs(375),
+    padding:vs(10) && hs(10)
   },
   coinContainer:{
-    margin:'auto',
-    marginTop:'30%'
+    marginHorizontal:'auto',
+    marginTop:vs(40),
+  
     
   },
   count:{
     flexDirection:'row',
     justifyContent:'space-around',
-    marginTop:'5%'
+    marginTop:vs(20)
     
   },
   countText:{
     color: 'black',
-    fontSize:15,
-    fontWeight:'700'
+    fontSize:ms(18),
   },
   toss:{
-    padding:23,
-    backgroundColor:'#001900',
-    width:'90%',
-    margin:'auto',
-    marginTop:'15%',
-
-    borderRadius:10
+    padding:21,
+    backgroundColor:'#013300',
+    width:hs(315),
+    marginHorizontal:'auto',
+    marginTop:vs(20),
+    borderRadius:ms(20)
   },
   tossText:{
     color:'white',
     textAlign:'center',
-    fontSize: 13,
+    fontSize: ms(14),
     
   },
   reset:{
-    backgroundColor:'#000000',
-    padding:20,
-    width:'40%',
-    marginTop:60,
+    backgroundColor:'#001900',
+    padding:16,
+    width:hs(175),
+    marginTop:vs(35),
     
     marginHorizontal:'auto',
-    borderRadius:5
+    borderRadius:ms(5)
   },
   resetText:{
     color:'white',
     textAlign:'center',
   },
   money:{
-    marginHorizontal:'auto'
+    marginHorizontal:'auto',
+    marginTop:vs(20)
+  },
+  tossTime:{
+    marginTop:vs(-45),
+    fontSize:ms(17)
   }
 })
