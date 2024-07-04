@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, Animated, TouchableOpacity, Easing } from 'react-native'
+import { View, Text, Image, StyleSheet, Animated, TouchableOpacity, Easing, Button } from 'react-native'
 import React, { useRef, useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { hs, ms, vs } from './Metrics'
@@ -55,12 +55,6 @@ const HomePage = () => {
     <View style={styles.home} >
         <StatusBar style="auto" />
     <View style={styles.homeContainer}  >
-    <View style={{flexDirection:'row', justifyContent:'space-around', marginTop:'8%'}} >
-       <Text onPress={()=>setCounts(1)} style={{paddingHorizontal:10, marginVertical:5, backgroundColor:'green'}} > 1 </Text>
-       <Text onPress={()=>setCounts(3)} style={{paddingHorizontal:10, marginVertical:5, backgroundColor:'green'}} > 3 </Text>
-       <Text onPress={()=>setCounts(5)} style={{paddingHorizontal:10, marginVertical:5, backgroundColor:'green'}} > 5 </Text>
-       <Text onPress={()=>setCounts(7)} style={{paddingHorizontal:10, marginVertical:5, backgroundColor:'green'}} > 7 </Text>
-    </View>
       <View style={styles.coinContainer} >
         {coinSide && ( <Animated.Image
         source={ coinSide === 'queen' ?
@@ -102,7 +96,15 @@ const HomePage = () => {
       </View>
 
       <Image style={styles.money} source={require('../assets/money.png')} />
-    <Text style={styles.tossTime} >Set Toss Time: {counts} </Text>
+      
+  <View style={{flexDirection:'row', justifyContent:'space-between'}} >
+  <Text style={styles.tossTime} >Set Toss Time: {counts} </Text>
+    <TouchableOpacity onPress={()=>setCounts(counts +1)} style={styles.flips} >
+        <Text style={{textAlign:'center', color:'white', fontSize:14}} >
+          Add Flips
+        </Text>
+      </TouchableOpacity>
+  </View>
     </View>
     </View>
   )
@@ -119,14 +121,14 @@ const styles = StyleSheet.create({
   },
   coinContainer:{
     marginHorizontal:'auto',
-    marginTop:vs(40),
+    marginTop:vs(50),
   
     
   },
   count:{
     flexDirection:'row',
     justifyContent:'space-around',
-    marginTop:vs(20)
+    marginTop:vs(14)
     
   },
   countText:{
@@ -134,11 +136,11 @@ const styles = StyleSheet.create({
     fontSize:ms(18),
   },
   toss:{
-    padding:21,
+    padding:ms(18) ,
     backgroundColor:'#013300',
     width:hs(315),
     marginHorizontal:'auto',
-    marginTop:vs(20),
+    marginTop:vs(35),
     borderRadius:ms(20)
   },
   tossText:{
@@ -149,9 +151,9 @@ const styles = StyleSheet.create({
   },
   reset:{
     backgroundColor:'#001900',
-    padding:16,
+    padding:ms(15),
     width:hs(175),
-    marginTop:vs(35),
+    marginTop:vs(55),
     
     marginHorizontal:'auto',
     borderRadius:ms(5)
@@ -165,7 +167,15 @@ const styles = StyleSheet.create({
     marginTop:vs(20)
   },
   tossTime:{
-    marginTop:vs(-45),
+    marginTop:vs(-10),
     fontSize:ms(17)
+  },
+  flips:{
+    padding:ms(15),
+    backgroundColor:'#013303',
+    width:hs(100),
+    marginTop:vs(-25)
+    
+  
   }
 })

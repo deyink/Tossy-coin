@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         height:'45%',
         backgroundColor:'#009900',
         margin:'auto',
-        borderRadius:600
+        borderRadius:700
     },
     tossy:{
         margin:'auto',
