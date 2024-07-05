@@ -12,9 +12,9 @@ const HomePage = () => {
   const flipAnimation = useRef( new Animated.Value(0) ).current
   const animatedValue = useRef( new Animated.Value(0) ).current
 
+
   const tossCoin = ()=>{
     const randomSide = Math.floor(Math.random() *2)
-    
 
   Animated.timing(flipAnimation, { 
     toValue: 3, 
@@ -32,23 +32,25 @@ const HomePage = () => {
                 setQueenCount(queenCount + 1); 
             } 
         });
-        
+      
       }
-    
 
+      let sunC = kingCount + queenCount
     const resetCounts = () => { 
       setKingCount(0); 
       setQueenCount(0);
       setCounts(0)
   }; 
-  if( kingCount + queenCount === counts && kingCount > queenCount ){
+  if( sunC === counts && kingCount > queenCount ){
     alert('King is the winner')
     resetCounts();
   }
-  else if( kingCount + queenCount === counts && queenCount > kingCount ){
-    alert('Queen is the winnwer')
+  else if( sunC === counts && queenCount > kingCount ){
+    alert('Queen is the winner')
       resetCounts();
   }
+
+
   
 
   return (
@@ -98,7 +100,7 @@ const HomePage = () => {
       <Image style={styles.money} source={require('../assets/money.png')} />
       
   <View style={{flexDirection:'row', justifyContent:'space-between'}} >
-  <Text style={styles.tossTime} >Set Toss Time: {counts} </Text>
+  <Text style={styles.tossTime} >Set Flip Time: {counts} </Text>
     <TouchableOpacity onPress={()=>setCounts(counts +1)} style={styles.flips} >
         <Text style={{textAlign:'center', color:'white', fontSize:14}} >
           Add Flips

@@ -22,6 +22,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "6137d5e8-d9fe-4d23-b7ef-e773d445a21e"
+      }
+    },
+    "owner": "deyink"
   }
 }
