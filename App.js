@@ -1,7 +1,6 @@
-
+import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { useEffect, useState } from 'react';
 import HomePage from './screens/HomePage';
 import SplashScreenCus from './screens/SplashScreenCus';
 import { NavigationContainer} from '@react-navigation/native';
@@ -35,4 +34,4 @@ export default function App() {
 
 const styles = StyleSheet.create({
 
-});
+});  
