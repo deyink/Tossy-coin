@@ -101,11 +101,34 @@ const HomePage = () => {
       
   <View style={{flexDirection:'row', justifyContent:'space-between'}} >
   <Text style={styles.tossTime} >Set Flip Time: {counts} </Text>
-    <TouchableOpacity onPress={()=>setCounts(counts +1)} style={styles.flips} >
+    {/* <TouchableOpacity onPress={()=>setCounts(counts +1)} style={styles.flips} >
         <Text style={{textAlign:'center', color:'white', fontSize:14}} >
           Add Flips
         </Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
+  </View>
+  <View style={{flexDirection:'row', justifyContent:'space-around', marginTop:vs(30)}} >
+    <TouchableOpacity onPress={ ()=>setCounts(1) } style={styles.flips} >
+      <Text style={styles.resetText} >
+        1
+      </Text>
+    </TouchableOpacity  >
+    <TouchableOpacity onPress={ ()=>setCounts(3) } style={styles.flips} >
+      <Text style={styles.resetText}  >
+        3
+      </Text>
+    </TouchableOpacity>
+    <TouchableOpacity onPress={ ()=>setCounts(5) } style={styles.flips} >
+      <Text style={styles.resetText}  >
+        5
+      </Text>
+    </TouchableOpacity>
+    <TouchableOpacity onPress={ ()=>setCounts(7) } style={styles.flips} >
+      <Text style={styles.resetText}  >  
+        7
+      </Text>
+    </TouchableOpacity>
+
   </View>
     </View>
     </View>
@@ -173,9 +196,9 @@ const styles = StyleSheet.create({
     fontSize:ms(17)
   },
   flips:{
-    padding:ms(15),
+    padding:ms(11),
     backgroundColor:'#013303',
-    width:hs(100),
+    width:hs(70),
     marginTop:vs(-25)
     
   
