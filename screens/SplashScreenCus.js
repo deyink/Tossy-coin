@@ -31,15 +31,16 @@ const styles = StyleSheet.create({
         height:'100%'
     },
     box:{
-        width:'90%',
-        height:'45%',
+        width:'60%',
+        height:'30%',
         backgroundColor:'#009900',
+        
         margin:'auto',
         borderRadius:700
     },
     tossy:{
         margin:'auto',
         color:'#fffcf3',
-        fontSize:40
+        fontSize:30
     }
 })
