@@ -150,6 +150,10 @@ const styles = StyleSheet.create({
   
     
   },
+  coinImage:{
+    height:vs(213),
+    width:hs(160)
+  },
   count:{
     flexDirection:'row',
     justifyContent:'space-around',
