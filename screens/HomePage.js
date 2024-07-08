@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     marginTop:vs(20)
   },
   tossTime:{
-    marginTop:vs(-10),
+    marginTop:vs(-25),
     fontSize:ms(17)
   },
   flips:{
